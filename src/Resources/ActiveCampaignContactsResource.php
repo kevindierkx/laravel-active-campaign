@@ -12,7 +12,8 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     /**
      * Retreive an existing contact by their id.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return ActiveCampaignContact
      */
     public function get(int $id): ActiveCampaignContact
@@ -29,13 +30,16 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     /**
      * List all contact, search contacts, or filter contacts by query defined criteria.
      *
+     * @param array $query
+     *
      * @return Collection<int, ActiveCampaignContact>
      */
-    public function list(?string $query = ''): Collection
+    public function list(array $query = []): Collection
     {
         $contacts = $this->request(
             method: 'get',
-            path: 'contacts?'.$query,
+            path: 'contacts',
+            data: $query,
             responseKey: 'contacts'
         );
 
@@ -46,11 +50,12 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     /**
      * Create a contact and get the contact id.
      *
-     * @param  string  $email
-     * @param  array  $attributes
-     * @return string
+     * @param string $email
+     * @param array  $attributes
      *
      * @throws ActiveCampaignException
+     *
+     * @return string
      */
     public function create(string $email, array $attributes = []): string
     {
@@ -71,10 +76,11 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     /**
      * Update an existing contact.
      *
-     * @param  ActiveCampaignContact  $contact
-     * @return ActiveCampaignContact
+     * @param ActiveCampaignContact $contact
      *
      * @throws ActiveCampaignException
+     *
+     * @return ActiveCampaignContact
      */
     public function update(ActiveCampaignContact $contact): ActiveCampaignContact
     {
@@ -98,10 +104,11 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     /**
      * Delete an existing contact by their id.
      *
-     * @param  int  $id
-     * @return void
+     * @param int $id
      *
      * @throws ActiveCampaignException
+     *
+     * @return void
      */
     public function delete(int $id): void
     {
@@ -116,11 +123,12 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
      *
      * @see https://developers.activecampaign.com/reference/create-contact-tag
      *
-     * @param  int  $id
-     * @param  int  $tagId
-     * @return string
+     * @param int $id
+     * @param int $tagId
      *
      * @throws ActiveCampaignException
+     *
+     * @return string
      */
     public function tag(int $id, int $tagId): string
     {
@@ -144,10 +152,11 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
      *
      * @see https://developers.activecampaign.com/reference#delete-contact-tag
      *
-     * @param  int  $contactTagId
-     * @return void
+     * @param int $contactTagId
      *
      * @throws ActiveCampaignException
+     *
+     * @return void
      */
     public function untag(int $contactTagId): void
     {
