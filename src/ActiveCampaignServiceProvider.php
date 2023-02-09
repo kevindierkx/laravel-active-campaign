@@ -8,7 +8,7 @@ class ActiveCampaignServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(ActiveCampaign::class, function () {
+        $this->app->singleton('active-campaign', function () {
             return new ActiveCampaignService(
                 config('active-campaign.base_url'),
                 config('active-campaign.api_key'),
@@ -26,7 +26,7 @@ class ActiveCampaignServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the config path
+     * Get the config path.
      *
      * @return string
      */
@@ -36,9 +36,9 @@ class ActiveCampaignServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish the config file
+     * Publish the config file.
      *
-     * @param  string  $configPath
+     * @param string $configPath
      */
     protected function publishConfig($configPath): void
     {
