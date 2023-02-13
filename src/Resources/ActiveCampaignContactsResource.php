@@ -122,7 +122,7 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
     {
         $contactList = $this->request(
             method: 'post',
-            path: 'contactList',
+            path: 'contactLists',
             data: [
                 'contactList' => [
                     'contact' => $id,
