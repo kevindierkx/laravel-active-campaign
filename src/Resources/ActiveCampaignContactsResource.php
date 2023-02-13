@@ -118,6 +118,24 @@ class ActiveCampaignContactsResource extends ActiveCampaignBaseResource
         );
     }
 
+    public function subscribe(int $id, int $listId): string
+    {
+        $contactList = $this->request(
+            method: 'post',
+            path: 'contactList',
+            data: [
+                'contactList' => [
+                    'contact' => $id,
+                    'list' => $listId,
+                    'status' => 1,
+                ],
+            ],
+            responseKey: 'contactList'
+        );
+
+        return $contactList['id'];
+    }
+
     /**
      * Add a tag to a contact.
      *
